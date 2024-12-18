@@ -1,18 +1,14 @@
 'use strict';
 
 const thead = document.querySelector('thead > tr');
-const posTitleColCopy = thead.querySelector('th:nth-child(2)').cloneNode(true);
-const lastTitleCol = thead.querySelector('th:last-child');
+const posTitleCol = thead.children[1].cloneNode(true);
 
-thead.insertBefore(posTitleColCopy, lastTitleCol);
+thead.insertBefore(posTitleCol, thead.lastElementChild);
 
-const rows = document.querySelectorAll('tbody > tr');
+document.querySelectorAll('tbody > tr').forEach((row) => {
+  const posCol = row.children[1].cloneNode(true);
 
-rows.forEach((row) => {
-  const newCol = row.querySelector('td:nth-child(2)').cloneNode(true);
-  const lastCol = row.querySelector('td:last-child');
-
-  row.insertBefore(newCol, lastCol);
+  row.insertBefore(posCol, row.lastElementChild);
 });
 
 // thead.tr > new col name
